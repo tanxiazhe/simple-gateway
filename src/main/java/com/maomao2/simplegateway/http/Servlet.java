@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "eatuul", urlPatterns = "/")
+@WebServlet(name = "eatuul", urlPatterns = "/*")
 public class Servlet extends HttpServlet {
 
     private Runner runner = new Runner();
