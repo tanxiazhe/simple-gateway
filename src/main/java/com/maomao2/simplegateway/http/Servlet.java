@@ -19,7 +19,7 @@ public class Servlet extends HttpServlet {
         runner.preRoute();
         runner.route();
         runner.postRoute();
-        runner.destory();
+        runner.destroy();
     }
 
 }

@@ -14,22 +14,22 @@ import com.maomao2.simplegateway.filter.route.RoutingFilter;
 
 public class Runner {
 
-    private ConcurrentHashMap<String, List<Filter>> hashFiltersByType = new ConcurrentHashMap<String, List<Filter>>() {
+    private static  ConcurrentHashMap<String, List<Filter>> hashFiltersByType = new ConcurrentHashMap<String, List<Filter>>() {
         {
             put("pre", new ArrayList<Filter>() {
                 {
-                    new RequestWrapperFilter();
+                    add(new RequestWrapperFilter());
                 }
             });
             put("route", new ArrayList<Filter>() {
                 {
-                    new RoutingFilter();
+                    add(new RoutingFilter());
                 }
             });
 
             put("post", new ArrayList<Filter>() {
                 {
-                    new SendResponseFilter();
+                    add(new SendResponseFilter());
                 }
             });
 
@@ -42,7 +42,7 @@ public class Runner {
         context.setResponse(resp);
     }
 
-    public void destory() {
+    public void destroy() {
         RequestContext context = RequestContext.getCurrentContext();
         context.unset();
     }
@@ -60,6 +60,7 @@ public class Runner {
     }
 
     private void runFilters(String type) {
+
         List<Filter> filterList = this.hashFiltersByType.get(type);
         if (filterList != null) {
             for (Filter filter : filterList) {
